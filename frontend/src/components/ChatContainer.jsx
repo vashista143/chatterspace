@@ -1,8 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { X } from "lucide-react";
 import { io } from "socket.io-client";
-import dotenv from "dotenv"
-dotenv.config()
 const ChatContainer = ({
   setmessages,
   messages,
