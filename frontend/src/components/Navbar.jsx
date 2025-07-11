@@ -3,8 +3,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { LogOut, Settings, User } from "lucide-react";
 import clsx from "clsx";
 import toast from "react-hot-toast";
-import dotenv from "dotenv"
-dotenv.config()
 const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
