@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import dotenv from "dotenv"
-dotenv.config()
 const MessageInput = ({ selecteduser }) => {
   const [text, setText] = useState("");
   const handleSend = async () => {
