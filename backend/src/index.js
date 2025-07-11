@@ -7,7 +7,7 @@
   import { connectdb } from "./lib/db.js";
   import { createServer } from 'http';
   import { Server } from 'socket.io';
-  import Message from "./models/Message.js";
+  import Message from "./models/message.js";
   import passport from "passport";
   import session from "express-session";
   import dotenv from "dotenv"
