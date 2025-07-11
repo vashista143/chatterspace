@@ -3,8 +3,6 @@ import Navbar from '../components/Navbar'
 import Sidebar from '../components/sidebar'
 import NoChatSelected from '../components/NoChatSelected'
 import ChatContainer from '../components/ChatContainer'
-import dotenv from "dotenv"
-dotenv.config()
 const HomePage = ({authuser}) => {
 const [userloading,setuserloading]=useState(null)
 const [messageloading,setmessageloading]=useState(null)
