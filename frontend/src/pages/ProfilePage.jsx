@@ -2,7 +2,7 @@ import React from "react";
 import { Camera, Pencil } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import Navbar from "../components/navbar";
+import Navbar from "../components/Navbar";
 const ProfilePage = ({authuser}) => {
   console.log(authuser)
   const [SelectedImage, setSelectedImage] = useState(null);
