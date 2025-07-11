@@ -79,7 +79,7 @@ export const login =async (req,res)=>{
         sameSite: "None",
         secure: true,
         });
-
+        console.log("Incoming cookies:", req.cookies);
         return res.status(201).json({
         _id: user._id,
         name: user.name,
