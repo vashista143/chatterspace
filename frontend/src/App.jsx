@@ -18,7 +18,7 @@ const App = () => {
   useEffect(() => {
   const checkAuth = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/auth/check", {
+      const res = await fetch(`${import.meta.env.VITE_backendurl}/api/auth/check`, {
         method: "GET",
         credentials: "include",
         headers: {
