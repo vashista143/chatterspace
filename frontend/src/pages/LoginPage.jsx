@@ -4,8 +4,6 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthToggleTabs } from '../components/signinndupanimation';
 import toast from "react-hot-toast"
-import dotenv from "dotenv"
-dotenv.config()
 const LoginPage = () => {
   const { register, handleSubmit, watch, formState: { errors, isSubmitting } } = useForm();
   const navigate = useNavigate();
