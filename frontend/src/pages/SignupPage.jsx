@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Navbar from '../components/navbar';
+import Navbar from '../components/Navbar';
 import toast from "react-hot-toast"
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
