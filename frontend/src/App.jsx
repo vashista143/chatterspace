@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import {Routes, Route} from "react-router-dom"
-import HomePage from './pages/homepage'
-import LoginPage from './pages/loginpage'
-import ProfilePage from './pages/profilepage'
-import SettingsPage from './pages/settingspage'
-import SignupPage from './pages/signuppage'
-import Navbar from './components/navbar'
+import HomePage from './pages/homepage.jsx'
+import LoginPage from './pages/loginpage.jsx'
+import ProfilePage from './pages/profilepage.jsx'
+import SettingsPage from './pages/settingspage.jsx'
+import SignupPage from './pages/signuppage.jsx'
+import Navbar from './components/navbar.jsx'
 import { Loader } from "lucide-react";
 import { Toaster } from "react-hot-toast";
 
