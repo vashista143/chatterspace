@@ -1,4 +1,5 @@
   import express from "express"
+  import MongoStore from "connect-mongo";
   import authRoutes from "./routes/auth.route.js"
   import cors from "cors";
   import messageRoutes from "./routes/message.route.js"
@@ -13,13 +14,21 @@
   import dotenv from "dotenv"
   dotenv.config()
   const app=express()
-  app.use(
-  session({
-    secret: "keyboard cat",
-    resave: false,
-    saveUninitialized: false,
-  })
-);
+  app.use(session({
+  secret: "keyboard cat",
+  resave: false,
+  saveUninitialized: false,
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGO_URI,
+    collectionName: "sessions",
+  }),
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24,
+    httpOnly: true,
+    sameSite: "strict",
+    secure: process.env.NODE_ENV === "production", 
+  }
+}));
 app.use(passport.initialize());
 app.use(passport.session());
   const server = createServer(app);
