@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from '../components/Navbar'
-import Sidebar from '../components/sidebar'
+import Sidebar from '../components/Sidebar'
 import NoChatSelected from '../components/NoChatSelected'
 import ChatContainer from '../components/ChatContainer'
 const HomePage = ({authuser}) => {
