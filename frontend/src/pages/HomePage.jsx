@@ -3,13 +3,14 @@ import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
 import NoChatSelected from '../components/NoChatSelected'
 import ChatContainer from '../components/ChatContainer'
-
+import { useRef } from 'react'
 const HomePage = ({authuser, onlineUsers}) => {
 const [userloading,setuserloading]=useState(null)
 const [messageloading,setmessageloading]=useState(null)
 const [selecteduser, setselecteduser]= useState(null)
 const [messages,setmessages]=useState([])
 const [sidebarusers,setsidebarusers]=useState([])
+const sidebarRef=useRef()
 useEffect(() => {
 console.log(authuser)
 const getusers=async()=>{
@@ -35,8 +36,8 @@ getusers();
     <div className="h-screen flex flex-col">
   <Navbar />
   <div className="flex flex-1 bg-base-200 overflow-hidden">
-    <Sidebar sidebarusers={sidebarusers} onlineUsers={onlineUsers} selecteduser={selecteduser} setselecteduser={setselecteduser}/>
-    {!selecteduser ? <NoChatSelected /> : <ChatContainer onlineUsers={onlineUsers} users={sidebarusers} setmessages={setmessages} setmessageloading={setmessageloading} setselecteduser={setselecteduser} messages={messages} selecteduser={selecteduser} messageloading={messageloading} authuser={authuser} />}
+    <Sidebar ref={sidebarRef} sidebarusers={sidebarusers} onlineUsers={onlineUsers} selecteduser={selecteduser} setselecteduser={setselecteduser}/>
+    {!selecteduser ? <NoChatSelected /> : <ChatContainer sidebarRef={sidebarRef} onlineUsers={onlineUsers} users={sidebarusers} setmessages={setmessages} setmessageloading={setmessageloading} setselecteduser={setselecteduser} messages={messages} selecteduser={selecteduser} messageloading={messageloading} authuser={authuser} />}
   </div>
 </div>
 
