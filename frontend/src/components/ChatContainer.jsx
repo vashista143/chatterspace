@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import notificationSound from "../assets/notification.mp3?url";
 
 const ChatContainer = ({
+  sidebarRef,
   users,
   setmessages,
   messages,
@@ -180,7 +181,12 @@ const ChatContainer = ({
             )}
           </div>
         </div>
-        <button onClick={() => setselecteduser(null)}>
+        <button onClick={() => {
+          setselecteduser(null);
+          if (window.innerWidth <= 768 && sidebarRef?.current) {
+  sidebarRef.current.classList.remove("hidden");
+}
+          }}>
           <X size={20} className="hover:text-red-400 transition" />
         </button>
       </div>
