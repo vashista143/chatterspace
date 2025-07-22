@@ -16,7 +16,7 @@ const Navbar = () => {
     }).then(() => {
       toast.success("logged out successfully")
       navigate("/login");
-      window.location.reload();
+    
     });
   };
 
