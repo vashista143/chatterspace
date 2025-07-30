@@ -191,11 +191,11 @@ const ChatContainer = ({
         </button>
       </div>
 
-      <ul
-        id="messages"
-        ref={messagesContainerRef}
-        className="flex-1 overflow-y-auto p-2 md:p-4 space-y-2 text-white flex flex-col"
-      >
+      <div
+  ref={messagesContainerRef}
+  className="flex-1 overflow-y-auto p-2 md:p-4 space-y-2 text-white flex flex-col"
+>
+  <ul id="messages">
         {messageloading
           ? Array.from({ length: 8 }).map((_, i) => {
               const isSender = i % 2 === 0;
@@ -255,7 +255,7 @@ const ChatContainer = ({
                 );
               })}
       </ul>
-
+      </div>
       <div className="border-t border-white/10 p-2 md:p-3 bg-base-200 flex gap-2">
         <input
           type="text"
