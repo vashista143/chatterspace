@@ -59,6 +59,7 @@ export const signup = async (req, res) => {
 
 export const login =async (req,res)=>{
     const {email, password}=req.body;
+  console.log("CallbackURL used in passport:", process.env.GOOGLE_CLIENT_ID, process.env.GOOGLE_CLIENT_SECRET);
     try{
         const user=await User.findOne({email});
         if(!user){
