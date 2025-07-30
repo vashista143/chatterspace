@@ -8,8 +8,8 @@ import cloudinary from "./lib/cloudinary.js";
 passport.use(
   new GoogleStrategy(
     {
-      clientID: process.env.clientID,
-      clientSecret: process.env.clientSecret,
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: "https://chatterspace-18g3.onrender.com/api/auth/google/callback",
     },
     async (accessToken, refreshToken, profile, done) => {
