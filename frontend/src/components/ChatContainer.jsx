@@ -164,7 +164,8 @@ const ChatContainer = ({
   };
 
   return (
-<div className="flex flex-col w-full h-full min-h-[100dvh] overflow-hidden">
+    <div className="h-screen flex flex-col w-full">
+      {/* Header */}
       <div className="h-14 w-full bg-base-200 text-white flex items-center justify-between md:px-4 px-2 border-b border-white/10 text-sm md:text-base">
         <div className="flex items-center gap-2 md:gap-4 overflow-hidden">
           <img
@@ -184,78 +185,81 @@ const ChatContainer = ({
         <button onClick={() => {
           setselecteduser(null);
           if (window.innerWidth <= 768 && sidebarRef?.current) {
-  sidebarRef.current.classList.remove("hidden");
-}
-          }}>
+            sidebarRef.current.classList.remove("hidden");
+          }
+        }}>
           <X size={20} className="hover:text-red-400 transition" />
         </button>
       </div>
 
+      {/* Messages */}
       <div
-  ref={messagesContainerRef}
-  className="flex-1 overflow-y-auto p-2 md:p-4 space-y-2 text-white flex flex-col"
->
-  <ul id="messages" className="flex flex-col space-y-2">
-        {messageloading
-          ? Array.from({ length: 8 }).map((_, i) => {
-              const isSender = i % 2 === 0;
-              return (
-                <li
-                  key={i}
-                  className={`h-8 w-[60%] animate-pulse rounded-full ${
-                    isSender
-                      ? "bg-white/10 self-end mr-4 rounded-br-none"
-                      : "bg-white/10 self-start ml-4 rounded-bl-none"
-                  }`}
-                ></li>
-              );
-            })
-          : messages
-              .filter(
-                (msg) =>
-                  (msg.senderId === authuser._id && msg.receiverId === selecteduser._id) ||
-                  (msg.senderId === selecteduser._id && msg.receiverId === authuser._id)
-              )
-              .map((msg, index) => {
-                const isSender = msg.senderId?.toString() === authuser._id?.toString();
+        ref={messagesContainerRef}
+        className="flex-1 overflow-y-auto p-2 md:p-4 space-y-2 text-white flex flex-col"
+      >
+        <ul id="messages" className="flex flex-col space-y-2">
+          {messageloading
+            ? Array.from({ length: 8 }).map((_, i) => {
+                const isSender = i % 2 === 0;
                 return (
                   <li
-                    key={index}
-                    className={`px-3 py-2 rounded-xl max-w-[90%] md:max-w-[70%] text-sm ${
+                    key={i}
+                    className={`h-8 w-[60%] animate-pulse rounded-full ${
                       isSender
-                        ? "bg-yellow-500 text-black self-end"
-                        : "bg-neutral-800 text-white self-start"
+                        ? "bg-white/10 self-end mr-4 rounded-br-none"
+                        : "bg-white/10 self-start ml-4 rounded-bl-none"
                     }`}
-                  >
-                    <div className="flex flex-col gap-1">
-<div className="break-words whitespace-pre-wrap">{msg.text}</div>
-                      <div className="flex justify-end items-center gap-1 text-xs">
-                        <span className={isSender ? "text-black" : "text-gray-400"}>
-  {(() => {
-    const createdAt = new Date(msg.createdAt);
-    const now = new Date();
-    const isToday =
-      createdAt.getDate() === now.getDate() &&
-      createdAt.getMonth() === now.getMonth() &&
-      createdAt.getFullYear() === now.getFullYear();
-
-    return isToday
-      ? createdAt.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })
-      : `${createdAt.toLocaleDateString([], { day: "2-digit", month: "short" })}, ${createdAt.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })}`;
-  })()}
-</span>
-                        {isSender && (
-                          <span className={`font-medium ${msg.seen ? "text-blue-500" : "text-gray-400"}`}>
-                            {msg.seen ? "✓✓" : "✓"}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  </li>
+                  ></li>
                 );
-              })}
-      </ul>
+              })
+            : messages
+                .filter(
+                  (msg) =>
+                    (msg.senderId === authuser._id && msg.receiverId === selecteduser._id) ||
+                    (msg.senderId === selecteduser._id && msg.receiverId === authuser._id)
+                )
+                .map((msg, index) => {
+                  const isSender = msg.senderId?.toString() === authuser._id?.toString();
+                  return (
+                    <li
+                      key={index}
+                      className={`px-3 py-2 rounded-xl max-w-[90%] md:max-w-[70%] text-sm ${
+                        isSender
+                          ? "bg-yellow-500 text-black self-end"
+                          : "bg-neutral-800 text-white self-start"
+                      }`}
+                    >
+                      <div className="flex flex-col gap-1">
+                        <div className="break-words whitespace-pre-wrap">{msg.text}</div>
+                        <div className="flex justify-end items-center gap-1 text-xs">
+                          <span className={isSender ? "text-black" : "text-gray-400"}>
+                            {(() => {
+                              const createdAt = new Date(msg.createdAt);
+                              const now = new Date();
+                              const isToday =
+                                createdAt.getDate() === now.getDate() &&
+                                createdAt.getMonth() === now.getMonth() &&
+                                createdAt.getFullYear() === now.getFullYear();
+
+                              return isToday
+                                ? createdAt.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })
+                                : `${createdAt.toLocaleDateString([], { day: "2-digit", month: "short" })}, ${createdAt.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })}`;
+                            })()}
+                          </span>
+                          {isSender && (
+                            <span className={`font-medium ${msg.seen ? "text-blue-500" : "text-gray-400"}`}>
+                              {msg.seen ? "✓✓" : "✓"}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </li>
+                  );
+                })}
+        </ul>
       </div>
+
+      {/* Input */}
       <div className="border-t border-white/10 p-2 md:p-3 bg-base-200 flex gap-2">
         <input
           type="text"
