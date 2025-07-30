@@ -1,4 +1,5 @@
 import { React, useState } from 'react';
+import { useEffect } from "react";
 import Navbar from '../components/Navbar';
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
@@ -28,6 +29,27 @@ const LoginPage = () => {
     toast.error("Something went wrong. Please try again later.");
   }
   };
+  useEffect(() => {
+  const checkLogin = async () => {
+    try {
+      const res = await fetch(`${import.meta.env.VITE_backendurl}/api/auth/check`, {
+        method: "GET",
+        credentials: "include",
+      });
+
+      if (res.ok) {
+        const user = await res.json();
+        console.log("User already logged in:", user);
+        navigate("/");
+      }
+    } catch (error) {
+      console.log("Not logged in");
+    }
+  };
+
+  checkLogin();
+}, []);
+
   return (
     <div className="relative w-full h-screen overflow-hidden">
       <video autoPlay muted loop playsInline className="absolute top-0 left-0 w-full h-full object-cover z-[-1]">
