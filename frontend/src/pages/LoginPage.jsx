@@ -112,7 +112,7 @@ const LoginPage = () => {
         <button
   className="flex-1 flex items-center justify-center gap-2 bg-neutral-800 border border-neutral-700 p-3 rounded-lg hover:bg-neutral-700 transition"
   onClick={() => {
-    window.open(`${import.meta.env.VITE_backendurl}/api/auth/google`, "_self");
+window.location.href = `${import.meta.env.VITE_backendurl}/api/auth/google`;
   }}
 >
   <span className="text-sm">Google</span>
