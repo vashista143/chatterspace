@@ -129,7 +129,8 @@ const onsubmit = async (data) => {
             placeholder="Enter your email"
             className="w-[95%] p-3 bg-neutral-800 text-white rounded-lg placeholder-gray-400 text-sm outline-none focus:ring-2 focus:ring-white/20"
           />
-          <button type='button' onClick={handleSendOtp} className='p-1 bg-neutral-800 text-white rounded-lg placeholder-gray-400 text-sm'  disabled={isSendingOtp}> {isSendingOtp ? "wait..." : "send otp"}</button>
+          <button type='button' onClick={handleSendOtp}   className="bg-white text-black font-semibold px-3 py-2 rounded-lg hover:bg-gray-200 transition disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed"
+  disabled={isSendingOtp}> {isSendingOtp ? "wait..." : "send otp"}</button>
           <input
   {...register("otp", { required: "Verify your OTP" })}
   placeholder="Enter OTP received"
