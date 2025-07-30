@@ -164,38 +164,40 @@ const ChatContainer = ({
   };
 
   return (
-    <div className="h-screen flex flex-col w-full">
-      {/* Header */}
-      <div className="h-14 w-full bg-base-200 text-white flex items-center justify-between md:px-4 px-2 border-b border-white/10 text-sm md:text-base">
-        <div className="flex items-center gap-2 md:gap-4 overflow-hidden">
-          <img
-            src={selecteduser.profilepic || "https://cdn-icons-png.flaticon.com/512/847/847969.png"}
-            alt={selecteduser.name}
-            className="w-10 h-10 min-w-10 min-h-10 rounded-full object-cover border border-white/20"
-          />
-          <div className="flex flex-col">
-            <span className="font-semibold truncate max-w-[150px] md:max-w-none">{selecteduser?.name || "Chat"}</span>
-            {onlineUsers.includes(selecteduser._id) && (
-              <span className="text-green-500 text-xs flex items-center gap-1">
-                <CircleDot size={12} /> Online
-              </span>
-            )}
-          </div>
+  <div className="h-screen w-full flex flex-col overflow-hidden">
+    {/* Header */}
+    <div className="h-14 bg-base-200 text-white flex items-center justify-between px-4 border-b border-white/10">
+      <div className="flex items-center gap-2 overflow-hidden">
+        <img
+          src={selecteduser.profilepic || "https://cdn-icons-png.flaticon.com/512/847/847969.png"}
+          alt={selecteduser.name}
+          className="w-10 h-10 rounded-full object-cover border border-white/20"
+        />
+        <div className="flex flex-col">
+          <span className="font-semibold truncate max-w-[150px]">{selecteduser?.name || "Chat"}</span>
+          {onlineUsers.includes(selecteduser._id) && (
+            <span className="text-green-500 text-xs flex items-center gap-1">
+              <CircleDot size={12} /> Online
+            </span>
+          )}
         </div>
-        <button onClick={() => {
-          setselecteduser(null);
-          if (window.innerWidth <= 768 && sidebarRef?.current) {
-            sidebarRef.current.classList.remove("hidden");
-          }
-        }}>
-          <X size={20} className="hover:text-red-400 transition" />
-        </button>
       </div>
+      <button onClick={() => {
+        setselecteduser(null);
+        if (window.innerWidth <= 768 && sidebarRef?.current) {
+          sidebarRef.current.classList.remove("hidden");
+        }
+      }}>
+        <X size={20} className="hover:text-red-400 transition" />
+      </button>
+    </div>
 
-      {/* Messages */}
+    {/* Message area + input wrapper */}
+    <div className="flex flex-col flex-1 overflow-hidden">
+      {/* Message list */}
       <div
         ref={messagesContainerRef}
-        className="flex-1 overflow-y-auto p-2 md:p-4 space-y-2 text-white flex flex-col"
+        className="flex-1 overflow-y-auto p-2 md:p-4 space-y-2 text-white"
       >
         <ul id="messages" className="flex flex-col space-y-2">
           {messageloading
@@ -259,7 +261,7 @@ const ChatContainer = ({
         </ul>
       </div>
 
-      {/* Input */}
+      {/* Input section */}
       <div className="border-t border-white/10 p-2 md:p-3 bg-base-200 flex gap-2">
         <input
           type="text"
@@ -282,7 +284,9 @@ const ChatContainer = ({
         </button>
       </div>
     </div>
-  );
+  </div>
+);
+
 };
 
 export default ChatContainer;
