@@ -146,11 +146,15 @@ const onsubmit = async (data) => {
           />
         </div>
         <button
-           disabled={isSubmitting}
-            type="submit"
-            className="w-full mt-6 bg-white text-black font-semibold py-3 rounded-lg hover:bg-gray-200 transition"          >
-              {isSubmitting ? "creating..." : "Create an account"}
-          </button>
+  disabled={isSubmitting}
+  type="submit"
+  className={`w-full mt-6 py-3 rounded-lg font-semibold transition 
+              bg-white text-black 
+              hover:bg-gray-200 
+              disabled:bg-gray-300 disabled:text-gray-500 cursor-pointer disabled:cursor-not-allowed`}
+>
+  {isSubmitting ? "creating..." : "Create an account"}
+</button>
         </form>
 
         {/* <div className="flex items-center my-6">
