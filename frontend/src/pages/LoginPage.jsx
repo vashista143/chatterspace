@@ -29,7 +29,9 @@ const LoginPage = () => {
     toast.error("Something went wrong. Please try again later.");
   }
   };
-  useEffect(() => {
+ const [loading, setLoading] = useState(true); // add this state
+
+useEffect(() => {
   const checkLogin = async () => {
     try {
       const res = await fetch(`${import.meta.env.VITE_backendurl}/api/auth/check`, {
@@ -39,17 +41,19 @@ const LoginPage = () => {
 
       if (res.ok) {
         const user = await res.json();
-        console.log("User already logged in:", user);
+        console.log("Already logged in:", user);
         navigate("/");
+      } else {
+        setLoading(false); // not logged in, show login form
       }
     } catch (error) {
       console.log("Not logged in");
+      setLoading(false); // allow form to show
     }
   };
 
   checkLogin();
 }, []);
-
   return (
     <div className="relative w-full h-screen overflow-hidden">
       <video autoPlay muted loop playsInline className="absolute top-0 left-0 w-full h-full object-cover z-[-1]">
