@@ -10,7 +10,9 @@ const [messageloading,setmessageloading]=useState(null)
 const [selecteduser, setselecteduser]= useState(null)
 const [messages,setmessages]=useState([])
 const [sidebarusers,setsidebarusers]=useState([])
+const [shownavbar,setshownavbar]=useState(true)
 const sidebarRef=useRef()
+const isMobile = () => window.innerWidth <= 768;
 useEffect(() => {
 console.log(authuser)
 const getusers=async()=>{
@@ -30,11 +32,17 @@ const getusers=async()=>{
 }
 getusers();
 }, [])
-
+useEffect(() => {
+  if (selecteduser && isMobile()) {
+    setshownavbar(false);
+  } else {
+    setshownavbar(true);
+  }
+}, [selecteduser]);
 
   return (
     <div className="h-screen flex flex-col">
-  <Navbar />
+  {shownavbar && <Navbar />}
   <div className="flex flex-1 bg-base-200 overflow-hidden">
     <Sidebar ref={sidebarRef} sidebarusers={sidebarusers} onlineUsers={onlineUsers} selecteduser={selecteduser} setselecteduser={setselecteduser}/>
     {!selecteduser ? <NoChatSelected /> : <ChatContainer sidebarRef={sidebarRef} onlineUsers={onlineUsers} users={sidebarusers} setmessages={setmessages} setmessageloading={setmessageloading} setselecteduser={setselecteduser} messages={messages} selecteduser={selecteduser} messageloading={messageloading} authuser={authuser} />}
