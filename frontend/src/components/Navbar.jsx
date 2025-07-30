@@ -9,16 +9,25 @@ const Navbar = () => {
   const navigate = useNavigate();
   const isAuthPage = location.pathname === "/login" || location.pathname === "/signup";
 
-  const handleLogout = () => {
-    fetch(`${import.meta.env.VITE_backendurl}/api/auth/logout`, {
+  const handleLogout = async () => {
+  try {
+    const res = await fetch(`${import.meta.env.VITE_backendurl}/api/auth/logout`, {
       method: "POST",
       credentials: "include",
-    }).then(() => {
-      toast.success("logged out successfully")
-      navigate("/login");
-    
     });
-  };
+
+    if (res.ok) {
+      toast.success("Logged out successfully");
+      navigate("/login");
+    } else {
+      toast.error("Logout failed. Try again.");
+    }
+  } catch (err) {
+    toast.error("Network error during logout");
+    console.error(err);
+  }
+};
+
 
   return (
     <nav className="w-full bg-neutral-900/90 text-white md:px-6 px-2 py-3 flex justify-between items-center shadow-md">
