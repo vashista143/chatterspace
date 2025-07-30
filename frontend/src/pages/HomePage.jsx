@@ -41,7 +41,7 @@ useEffect(() => {
 }, [selecteduser]);
 
   return (
-    <div className="min-h-[100dvh] flex flex-col">
+    <div className="min-h-screen flex flex-col">
   {shownavbar && <Navbar />}
   <div className="flex flex-1 bg-base-200 overflow-hidden">
     <Sidebar ref={sidebarRef} sidebarusers={sidebarusers} onlineUsers={onlineUsers} selecteduser={selecteduser} setselecteduser={setselecteduser}/>
