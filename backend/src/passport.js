@@ -10,7 +10,7 @@ passport.use(
     {
       clientID: process.env.clientID,
       clientSecret: process.env.clientSecret,
-      callbackURL: "https://chatterspace.vercel.app/api/auth/google/callback",
+      callbackURL: "https://chatterspace-backend.onrender.com/api/auth/google/callback",
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
