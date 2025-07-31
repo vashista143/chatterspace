@@ -58,7 +58,7 @@ useEffect(() => {
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
+      setIsile(window.innerWidth <= 768);
     };
 
     checkMobile(); // run on mount
