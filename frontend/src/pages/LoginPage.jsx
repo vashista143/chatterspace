@@ -66,9 +66,9 @@ useEffect(() => {
 
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
-const desktopVideo =    "https://cdn.dribbble.com/userupload/16909493/file/original-e6c90943d3d9da57b997c2898244009e.mp4";
+const desktopVideo ="https://cdn.dribbble.com/userupload/16909493/file/original-e6c90943d3d9da57b997c2898244009e.mp4";
 
-  const mobileVideo =    "https://cdn.dribbble.com/userupload/17384646/file/original-862fb8700f61d5b437eee4e82c46ceed.mp4";
+  const mobileVideo ="https://cdn.dribbble.com/userupload/17384646/file/original-862fb8700f61d5b437eee4e82c46ceed.mp4";
 
 
   return (
