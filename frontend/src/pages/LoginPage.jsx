@@ -54,7 +54,7 @@ useEffect(() => {
 
   checkLogin();
 }, []);
- const [isMobile, setIsMobile] = useState(false);
+ const [isile, setIsile] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -80,7 +80,7 @@ const desktopVideo =
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover z-[-1]"
       >
-        <source src={isMobile ? mobileVideo : desktopVideo} type="video/mp4" />
+        <source src={isile ? mobileVideo : desktopVideo} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
