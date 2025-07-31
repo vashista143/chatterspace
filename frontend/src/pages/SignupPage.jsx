@@ -94,15 +94,22 @@ const onsubmit = async (data) => {
   }
 };
 
+const desktopVideo =
+    "https://cdn.dribbble.com/userupload/17384646/file/original-862fb8700f61d5b437eee4e82c46ceed.mp4";
+  const mobileVideo =
+    "https://cdn.dribbble.com/userupload/16909493/file/original-e6c90943d3d9da57b997c2898244009e.mp4";
 
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
-      <video autoPlay muted loop playsInline className="absolute top-0 left-0 w-full h-full object-cover z-[-1]">
-        <source
-          src="https://cdn.dribbble.com/userupload/17384646/file/original-862fb8700f61d5b437eee4e82c46ceed.mp4"
-          type="video/mp4"
-        />
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute top-0 left-0 w-full h-full object-cover z-[-1]"
+      >
+        <source src={isMobile ? mobileVideo : desktopVideo} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
