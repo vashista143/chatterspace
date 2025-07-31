@@ -93,6 +93,18 @@ const onsubmit = async (data) => {
     toast.error("Something went wrong");
   }
 };
+const [isMobile, setIsMobile] = useState(false);
+
+useEffect(() => {
+  const checkMobile = () => {
+    setIsMobile(window.innerWidth <= 768);
+  };
+
+  checkMobile(); // run once on mount
+  window.addEventListener("resize", checkMobile);
+
+  return () => window.removeEventListener("resize", checkMobile);
+}, []);
 
 const desktopVideo =
     "https://cdn.dribbble.com/userupload/17384646/file/original-862fb8700f61d5b437eee4e82c46ceed.mp4";
